@@ -60,4 +60,16 @@ const updateBlog = asyncHandler(async (req, res) => {
 })
 
 
-module.exports = { createBlog, updateBlog }
+// Fetch all blog
+
+const allBlog = asyncHandler(async (req, res) => {
+    try {
+        const blog = await Blog.find({})
+        res.json(blog)
+    } catch (error) {
+        res.status(404)
+        throw new Error('Blog not found')
+    }
+})
+
+module.exports = { createBlog, updateBlog, allBlog }
